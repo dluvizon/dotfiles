@@ -112,3 +112,4 @@ export PATH="/opt/arm-2009q1/bin:$PATH"
 
 alias send-to-gobo='busybox tftp -p -l /home/henriqueqc/projects/ipnc-new/linux/arch/arm/boot/uImage 192.168.50.12 -r uImage'
 alias vi='gvim -f --remote-silent'
+export EDITOR='gvim -f --remote-silent'
