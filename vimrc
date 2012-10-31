@@ -22,3 +22,7 @@ set hlsearch
 
 " Turns the filetype plugin on so we can have language specific options
 :filetype plugin on
+
+" Search for the tag file in the current directory and if not found, continue
+" up the tree
+set tags=./tags;/
