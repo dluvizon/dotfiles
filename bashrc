@@ -102,14 +102,5 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
-export ORACLE_SID=XE
-export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
-export ORACLE_BASE=/u01/app/oracle
-export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
-export PATH=$ORACLE_HOME/bin:$PATH
-export PATH="/opt/arm-2009q1/bin:$PATH"
-
-alias send-to-gobo='busybox tftp -p -l /home/henriqueqc/projects/ipnc-new/linux/arch/arm/boot/uImage 192.168.50.12 -r uImage'
 alias vi='gvim -f --remote-silent'
 export EDITOR='gvim -f'
