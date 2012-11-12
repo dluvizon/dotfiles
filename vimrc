@@ -20,8 +20,9 @@ set hlsearch
 " Show trailing whitespace:
 :match ExtraWhitespace /\s\+$/
 
-" Turns the filetype plugin on so we can have language specific options
-:filetype plugin on
+" Turns the filetype plugin on so we can have language specific options ant
+" indentation
+:filetype plugin indent on
 
 " Search for the tag file in the current directory and if not found, continue
 " up the tree
