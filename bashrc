@@ -104,3 +104,4 @@ fi
 
 alias vi='gvim -f --remote-silent'
 export EDITOR='gvim -f'
+set -o vi
