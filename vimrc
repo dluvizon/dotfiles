@@ -27,3 +27,6 @@ set hlsearch
 " Search for the tag file in the current directory and if not found, continue
 " up the tree
 set tags=./tags;/
+
+" use ~ as a leader (good when using ABNT2 keyboards)
+:let mapleader = "~"
