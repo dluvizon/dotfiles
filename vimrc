@@ -44,3 +44,8 @@ augroup augroup_vimrc
 	" sources the vimrc file when it is saved
 	autocmd BufWritePost .vimrc source $MYVIMRC
 augroup END
+
+" show invisible characters
+nmap <leader>l :set list!<CR>
+" use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
