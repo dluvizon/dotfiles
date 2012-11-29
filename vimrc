@@ -31,6 +31,9 @@ set tags=./tags;/
 " let unsaved buffers to be hidden without raising a warning
 set hidden
 
+" to upercase the word under the cursor
+nnoremap <leader>u bgUee
+
 " easily edit the vimrc file
 nnoremap <leader>v :tabedit $MYVIMRC<CR>
 
