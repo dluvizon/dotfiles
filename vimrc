@@ -31,6 +31,9 @@ set tags=./tags;/
 " let unsaved buffers to be hidden without raising a warning
 set hidden
 
+" toggle spell check
+nnoremap <leader>s :set spell!<CR>
+
 " to upercase the word under the cursor
 nnoremap <leader>u bgUee
 
