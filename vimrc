@@ -61,3 +61,6 @@ set listchars=tab:▸\ ,eol:¬
 " enable modeline to be able to add (set ft=gnuc) in a file and format the
 " code with diferent coding standards
 set modeline
+
+" use bash-like completion in ex mode
+set wildmode=longest:list
