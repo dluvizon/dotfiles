@@ -28,8 +28,5 @@ set hlsearch
 " up the tree
 set tags=./tags;/
 
-" use ~ as a leader (good when using ABNT2 keyboards)
-:let mapleader = "~"
-
 " let unsaved buffers to be hidden without raising a warning
 set hidden
