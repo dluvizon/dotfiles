@@ -15,6 +15,10 @@ colorscheme zenburn
 " Highlight the search term
 set hlsearch
 
+" changes the bg color of the columns after the 79 (80 and so forth)
+execute "set colorcolumn=" . join(range(80,335), ',')
+hi ColorColumn ctermbg=236
+
 " Set up the color for extra whitespaces
 highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 " Show trailing whitespace:
