@@ -35,6 +35,9 @@ set tags=./tags;/
 " let unsaved buffers to be hidden without raising a warning
 set hidden
 
+" let mapleader be "ç" because it's in a good position in ABNT2 keyboards
+let mapleader = "ç"
+
 " toggle spell check
 nnoremap <leader>s :set spell!<CR>
 
