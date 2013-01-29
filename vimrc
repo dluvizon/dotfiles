@@ -59,6 +59,8 @@ augroup augroup_vimrc
 	autocmd!
 	" sources the vimrc file when it is saved
 	autocmd BufWritePost .vimrc source $MYVIMRC
+	" sources the tmux configuration file when it is saved
+	autocmd BufWritePost *tmux.conf execute '!tmux source-file '.expand('<afile>:p')
 augroup END
 
 " show invisible characters
