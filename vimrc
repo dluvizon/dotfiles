@@ -50,6 +50,9 @@ nnoremap <leader>u bgUee
 " easily edit the vimrc file
 nnoremap <leader>v :tabedit $MYVIMRC<CR>
 
+" make in the current working directory
+nnoremap <leader>m :make<CR>
+
 " puts the autocmd inside a group so it does not source multiple times
 augroup augroup_vimrc
 	" remove all autocommands for the current group.
