@@ -15,6 +15,9 @@ colorscheme zenburn
 " Highlight the search term
 set hlsearch
 
+" hide highlighted words from previous find
+nnoremap <leader>h :nohlsearch<CR>
+
 " changes the bg color of the columns after the 79 (80 and so forth)
 execute "set colorcolumn=" . join(range(80,335), ',')
 hi ColorColumn ctermbg=236
