@@ -30,3 +30,14 @@ set tags=./tags;/
 
 " let unsaved buffers to be hidden without raising a warning
 set hidden
+
+" easily edit the vimrc file
+nnoremap <leader>v :tabedit $MYVIMRC<CR>
+
+" puts the autocmd inside a group so it does not source multiple times
+augroup augroup_vimrc
+	" remove all autocommands for the current group.
+	autocmd!
+	" sources the vimrc file when it is saved
+	autocmd BufWritePost .vimrc source $MYVIMRC
+augroup END
