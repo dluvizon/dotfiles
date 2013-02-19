@@ -9,8 +9,15 @@ set guioptions-=b
 " Set the font for gvim
 set guifont=Ubuntu\ Mono\ 13
 
-" Set the color scheme
-colorscheme zenburn
+" Indent automatically depending on filetype
+filetype indent on
+set autoindent
+
+" show line number
+set nu
+
+syntax on
+set smartindent
 
 " Highlight the search term
 set hlsearch
@@ -18,12 +25,11 @@ set hlsearch
 " hide highlighted words from previous find
 nnoremap <leader>h :nohlsearch<CR>
 
-" changes the bg color of the columns after the 79 (80 and so forth)
-execute "set colorcolumn=" . join(range(80,335), ',')
-hi ColorColumn ctermbg=236
+" Wrap text instead of being on one line
+set lbr
 
 " Set up the color for extra whitespaces
-highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+highlight ExtraWhitespace ctermbg=black guibg=lightgrey
 " Show trailing whitespace:
 match ExtraWhitespace /\s\+$/
 
@@ -34,6 +40,11 @@ filetype plugin indent on
 " Search for the tag file in the current directory and if not found, continue
 " up the tree
 set tags=./tags;/
+
+autocmd BufRead,BufNewFile   *.c,*.h set noic cin noexpandtab tabstop=8 shiftwidth=8
+autocmd BufRead,BufNewFile   *.java set noic cin noexpandtab tabstop=4 shiftwidth=4
+autocmd BufRead,BufNewFile   *.py set tabstop=4 shiftwidth=4 expandtab
+autocmd BufRead,BufNewFile   *.pl syntax on
 
 " let unsaved buffers to be hidden without raising a warning
 set hidden
@@ -75,3 +86,7 @@ set modeline
 
 " use bash-like completion in ex mode
 set wildmode=longest:list
+
+" paint all characters after 79
+highlight OverLength ctermbg=lightgrey ctermfg=lightred guibg=#FFD9D9
+match OverLength /\%>79v.\+/

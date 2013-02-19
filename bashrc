@@ -8,12 +8,16 @@
 # TERM 256 colors
 export TERM=screen-256color
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoredups:ignorespace
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+
+# X11 server config - turn screen saver off
+xset -dpms
+xset s off
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -80,11 +84,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -105,6 +104,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-alias vi='vim'
 export EDITOR='vim'
 set -o vi
+
+# Toolchain from buildroot
+PATH=$PATH:/home/diogo/ensitec/dev/buildroot/output/host/usr/bin
