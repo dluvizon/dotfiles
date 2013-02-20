@@ -22,4 +22,8 @@ alias cd.......='cd.....cd;cd..'
 # vim aliases
 alias vi='vim'
 
+# system notify aliases
+alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
+alias alert='notify-send -i /usr/share/icons/oxygen/32x32/status/task-complete.png "[$?] $(alert_helper)"'
+
 git config --global diff.external diff_meld.sh
