@@ -5,9 +5,6 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# TERM 256 colors
-export TERM=screen-256color
-
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -106,6 +103,3 @@ fi
 
 export EDITOR='vim'
 set -o vi
-
-# Toolchain from buildroot
-PATH=$PATH:/home/diogo/ensitec/dev/buildroot/output/host/usr/bin
