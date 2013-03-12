@@ -12,6 +12,12 @@ HISTCONTROL=ignoredups:ignorespace
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# HACK: set the TERM variable by hand here, this is not the correct place to
+# set the TERM variable but gnome-terminal sets it to xterm even though it
+# supports 256 colors with xterm-256color. We have to force it somewhere and
+# this was the place chosen.
+export TERM=xterm-256color
+
 # X11 server config - turn screen saver off
 xset -dpms
 xset s off
