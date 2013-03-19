@@ -5,7 +5,12 @@ export GOBO_SERVER=192.168.50.12
 
 # alias for busybox utilities in Ensitec
 alias gtftp='busybox tftp $@ $GOBO_SERVER'
+
+# gobo server
 alias gobo='ssh diogo@$GOBO_SERVER'
+
+# usb-serial
+alias serial='screen /dev/ttyUSB0 115200'
 
 # some more ls aliases
 alias ll='ls -lF'
