@@ -19,8 +19,8 @@ shopt -s histappend
 export TERM=xterm-256color
 
 # X11 server config - turn screen saver off
-xset -dpms
-xset s off
+#xset -dpms
+#xset s off
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
