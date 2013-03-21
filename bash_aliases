@@ -10,7 +10,7 @@ alias gtftp='busybox tftp $@ $GOBO_SERVER'
 alias gobo='ssh diogo@$GOBO_SERVER'
 
 # usb-serial
-alias serial='screen /dev/ttyUSB0 115200'
+alias serial='cu -l /dev/ttyUSB0 -s 115200'
 
 # some more ls aliases
 alias ll='ls -lF'
