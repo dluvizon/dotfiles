@@ -90,3 +90,9 @@ set wildmode=longest:list
 " paint all characters after 79
 highlight OverLength ctermbg=lightgrey ctermfg=lightred guibg=#FFD9D9
 match OverLength /\%>79v.\+/
+
+"let &printexpr="(v:cmdarg=='' ? ".
+"    \"system('lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice)".
+"    \". ' ' . v:fname_in) . delete(v:fname_in) + v:shell_error".
+"    \" : system('mv '.v:fname_in.' '.v:cmdarg) + v:shell_error)"
+
