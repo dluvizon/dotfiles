@@ -19,6 +19,9 @@ alias cd....='cd...;cd..'
 alias cd.....='cd....;cd..'
 alias cd.......='cd.....cd;cd..'
 
+# using rsync to copy
+alias cpr='rsync -av'
+
 # vim aliases
 alias vi='vim'
 
