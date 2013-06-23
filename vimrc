@@ -77,9 +77,6 @@ augroup END
 " show invisible characters
 nmap <leader>l :set list!<CR>
 
-" use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
-
 " enable modeline to be able to add (set ft=gnuc) in a file and format the
 " code with diferent coding standards
 set modeline
