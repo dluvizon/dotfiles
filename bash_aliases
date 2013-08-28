@@ -3,6 +3,7 @@
 # gobo server
 alias gobo='ssh diogo@gobo'
 alias faraday='ssh diogo@faraday -X'
+alias trasgo='ssh diogo@trasgo'
 
 # usb-serial
 alias serial='cu -l /dev/ttyUSB0 -s 115200'
