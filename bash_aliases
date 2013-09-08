@@ -6,7 +6,10 @@ alias faraday='ssh diogo@faraday -X'
 alias trasgo='ssh diogo@trasgo'
 
 # usb-serial
-alias serial='cu -l /dev/ttyUSB0 -s 115200'
+open_serial() {
+	cu -l /dev/ttyUSB$1 -s 115200
+}
+alias serial=open_serial
 
 # some more ls aliases
 alias ll='ls -lF'
@@ -126,9 +129,9 @@ Jobs="\j"
 #article&id=108:ps1-export-command-for-git&catid=45:general&Itemid=96
 # I tweaked it to work on UBUNTU 11.04 & 11.10 plus made it mo' better
 
-export PS1=$IBlack$Time12h$Color_Off'$(git branch &>/dev/null;\
+export PS1=$IPurple$Time12h$Color_Off'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
-  echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
+  echo "$(echo `git branch` | grep "\*" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
     # @4 - Clean repository - nothing to commit
     echo " ${debian_chroot:+($debian_chroot)}\u@\h" \
@@ -136,8 +139,9 @@ if [ $? -eq 0 ]; then \
   else \
     # @5 - Changes to working tree
     echo " ${debian_chroot:+($debian_chroot)}\u@\h" \
-    "'$IRed'"$(__git_ps1 " {%s}"); \
-  fi) '$BYellow$PathShort$Color_Off'\$ "; \
+    "'$IPurple'"$(__git_ps1 "{%s}"); \
+  fi) \
+  '$BIYellow$PathShort$Color_Off'\$ "; \
 else \
   # @2 - Prompt when not in GIT repo
   echo " ${debian_chroot:+($debian_chroot)}\u@\h" \
