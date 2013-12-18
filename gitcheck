@@ -15,7 +15,7 @@ function dir_iterate {
 		((i++))
 		if [ -d "$d" ]; then
 			if [ -d "$d"/.git ]; then
-				pushd $d > /dev/null
+				pushd "$d" > /dev/null
 				branch=`git branch | grep \* | awk '{print $2}'`
 				git update-index -q --refresh
 				git diff-index --quiet HEAD --
