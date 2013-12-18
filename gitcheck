@@ -17,6 +17,7 @@ function dir_iterate {
 			if [ -d "$d"/.git ]; then
 				pushd $d > /dev/null
 				branch=`git branch | grep \* | awk '{print $2}'`
+				git update-index -q --refresh
 				git diff-index --quiet HEAD --
 				if [ 0 -eq $? ]; then
 					print_tab "$d {\e[1;32m$branch\e[0m}" 1
