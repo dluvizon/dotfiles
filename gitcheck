@@ -19,13 +19,18 @@ function dir_iterate {
 		((i++))
 		if [ -d "$d" ]; then
 			if [ -d "$d"/.git ]; then
+				((global_num++))
 				pushd "$d" > /dev/null
 				branch=`git branch | grep \* | awk '{print $2}'`
 				git update-index -q --refresh
 				git diff-index --quiet HEAD --
-				((global_num++))
 				if [ 0 -eq $? ]; then
-					print_line "{\e[1;32m$branch\e[0m}" "$d"
+					ahead=`git status -sb | grep ahead`
+					if [ "" == "$ahead" ]; then
+						print_line "{\e[1;32m$branch\e[0m}" "$d"
+					else
+						print_line "{\e[1;34m$branch\e[0m}" "$d"
+					fi
 				else
 					print_line "{\e[1;31m$branch\e[0m}" "$d"
 				fi
@@ -37,10 +42,25 @@ function dir_iterate {
 	done
 }
 
+function show_help {
+	echo "Usage: $0 [PATH | --help]"
+	echo "Brief: List all git repositories, showing the currrent branch."
+	echo "       The branch name is painted according to the following rules:"
+	echo -e "       {\e[1;31mbranch\e[0m} -- uncommitted changes"
+	echo -e "       {\e[1;34mbranch\e[0m} -- all committed, but not pushed to remote"
+	echo -e "       {\e[1;32mbranch\e[0m} -- all committed and pushed"
+}
+
 function _main {
-	dir_iterate `pwd`
+	if [ "" == "$1" ]; then
+		dir_iterate `pwd`
+	elif [ "--help" == "$1" ]; then
+		show_help
+	else
+		dir_iterate "$1"
+	fi
 	return 0
 }
 
-_main
+_main "$1"
 exit $?
