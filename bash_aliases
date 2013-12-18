@@ -4,6 +4,8 @@
 alias gobo='ssh diogo@gobo'
 alias faraday='ssh diogo@faraday -X'
 alias trasgo='ssh diogo@trasgo'
+alias dainf='ssh diogo@dainf'
+alias limbo='ssh diogo@limbo'
 
 # usb-serial
 open_serial() {

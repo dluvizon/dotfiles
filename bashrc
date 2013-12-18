@@ -107,5 +107,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# checks if exist the dir /opt/scripts, if so, put it on PATH
+if [ -d /opt/scripts ]; then
+	PATH=$PATH:/opt/scripts
+fi
+
 export EDITOR='vim'
 set -o vi
