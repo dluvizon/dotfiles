@@ -1,11 +1,15 @@
 #!/bin/bash
 
-# print_tab [text] [number_of_tabs]
-function print_tab {
-	for i in $(seq 1 $2); do
-		echo -n "  "
+global_num=0
+
+# print_line [branch_colored] [path]
+function print_line {
+	printf "%3d " $global_num
+	echo -en "$1"
+	for i in $(seq 1 $((34 - ${#1}))); do
+		echo -n " "
 	done
-	echo -e $1
+	echo -e "$2"
 }
 
 # dir_iterate [dir_path]
@@ -19,10 +23,11 @@ function dir_iterate {
 				branch=`git branch | grep \* | awk '{print $2}'`
 				git update-index -q --refresh
 				git diff-index --quiet HEAD --
+				((global_num++))
 				if [ 0 -eq $? ]; then
-					print_tab "$d {\e[1;32m$branch\e[0m}" 1
+					print_line "{\e[1;32m$branch\e[0m}" "$d"
 				else
-					print_tab "$d {\e[1;31m$branch\e[0m}" 1
+					print_line "{\e[1;31m$branch\e[0m}" "$d"
 				fi
 				popd > /dev/null
 			else
