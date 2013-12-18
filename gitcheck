@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# print_tab [text] [number_of_tabs]
+function print_tab {
+	for i in $(seq 1 $2); do
+		echo -n "  "
+	done
+	echo -e $1
+}
+
+# dir_iterate [dir_path]
+function dir_iterate {
+	for d in "$1"/*; do
+		dir_array[$i]=$d
+		((i++))
+		if [ -d "$d" ]; then
+			if [ -d "$d"/.git ]; then
+				pushd $d > /dev/null
+				branch=`git branch | grep \* | awk '{print $2}'`
+				git diff-index --quiet HEAD --
+				if [ 0 -eq $? ]; then
+					print_tab "$d {\e[1;32m$branch\e[0m}" 1
+				else
+					print_tab "$d {\e[1;31m$branch\e[0m}" 1
+				fi
+				popd > /dev/null
+			else
+				dir_iterate "$d"
+			fi
+		fi
+	done
+}
+
+function _main {
+	dir_iterate `pwd`
+	return 0
+}
+
+_main
+exit $?
