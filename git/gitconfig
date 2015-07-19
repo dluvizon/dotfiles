@@ -1,0 +1,24 @@
+[diff]
+	external = diffmeld
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+	current = blue bold
+	local = white
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = green
+	changed = cyan
+	untracked = red
+[user]
+	email = diogo@luvizon.com
+	name = Diogo Luvizon
+[push]
+	default = simple

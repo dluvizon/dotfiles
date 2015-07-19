@@ -30,6 +30,7 @@ set lbr
 
 " Set up the color for extra whitespaces
 highlight ExtraWhitespace ctermbg=black guibg=lightgrey
+"
 " Show trailing whitespace:
 match ExtraWhitespace /\s\+$/
 
@@ -64,6 +65,10 @@ nnoremap <leader>v :tabedit $MYVIMRC<CR>
 " make in the current working directory
 nnoremap <leader>m :make<CR>
 
+" navigate to a block of code
+nnoremap <leader>[ [{<CR>
+nnoremap <leader>] ]}<CR>
+
 " puts the autocmd inside a group so it does not source multiple times
 augroup augroup_vimrc
 	" remove all autocommands for the current group.
@@ -77,6 +82,9 @@ augroup END
 " show invisible characters
 nmap <leader>l :set list!<CR>
 
+" toggle vim paste mode
+nmap <leader>p :set paste!<CR>
+
 " enable modeline to be able to add (set ft=gnuc) in a file and format the
 " code with diferent coding standards
 set modeline
@@ -84,9 +92,21 @@ set modeline
 " use bash-like completion in ex mode
 set wildmode=longest:list
 
-" paint all characters after 79
-highlight OverLength ctermbg=lightgrey ctermfg=lightred guibg=#FFD9D9
-match OverLength /\%>79v.\+/
+" toggle colored right border after 80 chars
+set colorcolumn=81
+let s:color_column_old = 0
+
+function! s:ToggleColorColumn()
+    if s:color_column_old == 0
+        let s:color_column_old = &colorcolumn
+        windo let &colorcolumn = 0
+    else
+        windo let &colorcolumn=s:color_column_old
+        let s:color_column_old = 0
+    endif
+endfunction
+
+nnoremap <Leader>m :call <SID>ToggleColorColumn()<cr>
 
 "let &printexpr="(v:cmdarg=='' ? ".
 "    \"system('lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice)".

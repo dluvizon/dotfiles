@@ -1,0 +1,62 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything.
+[ -z "$PS1" ] && return
+
+# Source global definitions (if any).
+if [ -f /etc/bashrc ]; then
+      . /etc/bashrc
+fi
+
+# Don't put duplicate lines in the history. See bash(1) for more options.
+# ... or force ignoredups and ignorespace.
+HISTCONTROL=ignoredups:ignorespace
+
+# Append to the history file, don't overwrite it.
+shopt -s histappend
+
+# Check the window size after each command and, if necessary.
+# Update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Enable color support of ls and also add handy aliases.
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
+	    eval "$(dircolors -b)"
+fi
+
+# Load bash alias definitions, if available.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Makes our day a bit more fun.... :-)
+if [ -x $(which fortune) ]; then
+    fortune -s
+fi
+
+export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
+export HISTIGNORE="&:bg:fg:ll:h"
+export HISTTIMEFORMAT="`date` ~$  "
+export HISTCONTROL=ignoredups
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+if [ -f ~/.git-completion.bash ] && ! shopt -oq posix; then
+    . ~/.git-completion.bash
+fi
+
+# Define vim (alias vi) as default editor, if available.
+if [ -x `which vim` ]
+then
+	export EDITOR='vim'
+	set -o vi
+	alias vi=vim
+fi
+

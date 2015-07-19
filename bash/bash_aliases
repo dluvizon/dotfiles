@@ -1,0 +1,116 @@
+#!/bin/bash
+
+# Load bash colors if available:
+if [ -e ~/.bash_colors ]
+then
+	source ~/.bash_colors
+fi
+
+# Open usb-serial port in 115200 bps:
+# Specify port in the first parameter, or use default port 0.
+# Use the alias 'serial'.
+open_serial() {
+	PORT=0
+	if [ $# -eq 2 ]
+	then
+		PORT=$1
+	fi
+	if [ -x /usr/bin/minicom ]
+	then
+		minicom -D /dev/ttyUSB$PORT -b 115200 --color=off \
+			--attrib=on -C /tmp/minicom-serial.log diogo
+	elif [ -x /usr/bin/cu ]
+	then
+		cu -l /dev/ttyUSB$PORT -s 115200
+	elif [ -x /usr/bin/screen ]
+	then
+		screen /dev/ttyUSB$PORT 115200
+	fi
+}
+alias serial=open_serial
+
+# System notify aliases. Use 'alert "Some mensage"':
+alias alert_helper='history | tail -n1 | sed -e "s/^\s*[0-9]\+\s*//" -e \
+	"s/;\s*alert$//"'
+alias alert='notify-send -i "$([ $? = 0 ] && echo terminal || echo error)" \
+	" $(alert_helper)"'
+
+# Display hardware information. Needs root permission:
+alias bios='[ -f /usr/sbin/dmidecode ] && sudo -v && echo -n \
+	"Motherboard" && sudo /usr/sbin/dmidecode -t 1 | \
+	grep "Manufacturer\|Product Name\|Serial Number" | tr -d "\t" | \
+	sed "s/Manufacturer//" && echo -ne "\nBIOS" && \
+	sudo /usr/sbin/dmidecode -t 0 | grep "Vendor\|Version\|Release" | \
+	tr -d "\t" | sed "s/Vendor//"'
+
+# Personnal Aliases:
+alias ..='cd ..'
+
+# Pretty-print of some PATH variables:
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
+# The 'ls' family (this assumes you use a recent GNU ls).
+# Add colors for filetype and  human-readable sizes by default on 'ls':
+alias ls='ls --color=auto'
+alias lx='ls -lXB'             #  Sort by extension.
+alias lk='ls -lSr'             #  Sort by size, biggest last.
+alias lt='ls -ltr'             #  Sort by date, most recent last.
+alias lc='ls -ltcr'            #  Sort by/show change time,most recent last.
+alias lu='ls -ltur'            #  Sort by/show access time,most recent last.
+alias lh='ls -a | egrep "^\."' #  List hidden files.
+alias lhd='ls -ld .??*'
+
+# The ubiquitous 'll': directories first, with alphanumeric sorting:
+alias ll="ls -lv --group-directories-first"
+alias lm='ll |more'            #  Pipe through 'more'.
+alias lr='ll -R'               #  Recursive ls.
+alias la='ll -A'               #  Show hidden files.
+alias l='ls -lh'               #  Fast human-readable ls list.
+alias tree='tree -Csuh'        #  Nice alternative to 'recursive ls'.
+
+# Enable color in grep.
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# This PS1 snippet was adopted from code for MAC/BSD I saw from:
+# http://allancraig.net/index.php?option=com_content&view=\
+#article&id=108:ps1-export-command-for-git&catid=45:general&Itemid=96
+# I tweaked it to work on UBUNTU 11.04 & 11.10 plus made it mo' better
+
+if [ -e ~/.git-prompt.sh ]
+then
+	source ~/.git-prompt.sh
+fi
+
+#  Customize BASH PS1 prompt to show current GIT repository and branch.
+#  by Mike Stewart - http://MediaDoneRight.com
+
+# Various variables you might want for your PS1 prompt instead:
+Time12h="\T"
+Time12a="\@"
+PathShort="\w"
+PathFull="\W"
+NewLine="\n"
+Jobs="\j"
+
+export PS1=$IBlack$Time12h$Color_Off'$(git branch &>/dev/null;\
+if [ $? -eq 0 ]; then \
+  echo "$(echo `git branch` | grep "\*" > /dev/null 2>&1; \
+  if [ "$?" -eq "0" ]; then \
+    # @4 - Clean repository - nothing to commit
+    echo " ${debian_chroot:+($debian_chroot)}\u@\h" \
+    "'$Green'"$(__git_ps1 " (%s)"); \
+  else \
+    # @5 - Changes to working tree
+    echo " ${debian_chroot:+($debian_chroot)}\u@\h" \
+    "'$IBlack'"$(__git_ps1 "{%s}"); \
+  fi) \
+  '$BIYellow$PathShort$Color_Off'\$ "; \
+else \
+  # @2 - Prompt when not in GIT repo
+    echo " ${debian_chroot:+($debian_chroot)}\u@\h" \
+  "'$Yellow$PathShort$Color_Off'\$ "; \
+  fi)'
+
