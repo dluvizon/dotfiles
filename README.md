@@ -1,7 +1,10 @@
 ## My personal dotfiles
 
-TODO
+These files can make your terminal a bit more friendly.
+Useful for bash, zsh (not fully tested), vim, git, and minicom.
 
-## Dependencies
+## Risk disclaimer
 
-TODO
+It is a free set of files/scripts that may be useful for you.
+It also can damage your current personal dotfiles, so use it at your own risk!
+
