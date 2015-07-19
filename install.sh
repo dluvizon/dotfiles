@@ -33,6 +33,7 @@ copydir  ${DIR}/zsh/functions		~/.zsh/
 copyfile ${DIR}/bash/bashrc		~/.bashrc
 copyfile ${DIR}/bash/bash_aliases	~/.bash_aliases
 copyfile ${DIR}/bash/bash_colors	~/.bash_colors
+copyfile ${DIR}/bash/bash_profile	~/.bash_profile
 
 # Install git files.
 copyfile ${DIR}/git/git-completion.bash	~/.git-completion.bash
