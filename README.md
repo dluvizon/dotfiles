@@ -1,6 +1,6 @@
 ## My personal dotfiles
 
-These files can make your terminal a bit more friendly.
+These files can make your terminal a little more friendly.
 Useful for bash, zsh (not fully tested), vim, git, and minicom.
 
 ## Risk disclaimer
