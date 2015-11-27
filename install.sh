@@ -19,7 +19,12 @@ function copyfile() {
 }
 
 function copydir() {
-	echo "Copying dir  '$1' to '$2'"
+	if [ -e "$2" ]
+	then
+		echo "Removing old '$2'"
+		rm -r "$2"
+	fi
+	echo "Copying dir '$1' to '$2'"
 	cp -R "$1" "$2"
 }
 
@@ -49,6 +54,9 @@ copyfile ${DIR}/tmux.conf		~/.tmux.conf
 # Install vim files.
 copydir  ${DIR}/vim			~/.vim
 copyfile ${DIR}/vimrc			~/.vimrc
+
+# Install octave files.
+copyfile ${DIR}/octaverc		~/.octaverc
 
 # xorg files.
 copyfile ${DIR}/xinitrc			~/.xinitrc

@@ -138,6 +138,19 @@ endfunction
 
 nnoremap <Leader>m :call <SID>ToggleColorColumn()<cr>
 
+" Octave syntax
+augroup filetypedetect
+  au! BufRead,BufNewFile *.m,*.oct set filetype=octave
+augroup END 
+
+" Use keywords from Octave syntax language file for autocomplete
+if has("autocmd") && exists("+omnifunc")
+   autocmd Filetype octave
+   \ if &omnifunc == "" |
+   \ setlocal omnifunc=syntaxcomplete#Complete |
+   \ endif
+endif 
+
 "let &printexpr="(v:cmdarg=='' ? ".
 "    \"system('lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice)".
 "    \". ' ' . v:fname_in) . delete(v:fname_in) + v:shell_error".
