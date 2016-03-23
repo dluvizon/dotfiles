@@ -53,7 +53,10 @@ copyfile ${DIR}/tmux.conf		~/.tmux.conf
 
 # Install vim files.
 copydir  ${DIR}/vim			~/.vim
-copyfile ${DIR}/vimrc			~/.vimrc
+copyfile ${DIR}/vimrc		~/.vimrc
+
+# Install ctags configuration file.
+copyfile ${DIR}/ctags		~/.ctags
 
 # Install octave files.
 copyfile ${DIR}/octaverc		~/.octaverc
