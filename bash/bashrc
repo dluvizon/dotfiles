@@ -33,7 +33,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Makes our day a bit more fun.... :-)
-if [ -x $(which fortune) ]; then
+if [ "" != "$(which fortune)" ]; then
     fortune -s
 fi
 
