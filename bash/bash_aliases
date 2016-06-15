@@ -74,6 +74,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# Damn, I hate the option '-i' in rm or mv
+alias rm='rm'
+alias mv='mv'
+
 # This PS1 snippet was adopted from code for MAC/BSD I saw from:
 # http://allancraig.net/index.php?option=com_content&view=\
 #article&id=108:ps1-export-command-for-git&catid=45:general&Itemid=96
