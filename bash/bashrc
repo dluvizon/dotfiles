@@ -60,3 +60,8 @@ then
 	alias vi=vim
 fi
 
+# Activate torch, if available there
+if [ -f /home/diogo/git/torch/install/bin/torch-activate ]; then
+  . /home/diogo/git/torch/install/bin/torch-activate
+fi
+
