@@ -60,6 +60,18 @@ then
 	alias vi=vim
 fi
 
+# Set keyboard rate
+xset r rate 200 32
+
+# Configure cuda-toolkit if available
+if [ -e /opt/cuda ]; then
+  export PATH=/opt/cuda/bin:$PATH
+  export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
+  export CUDA_ROOT=/opt/cuda
+elif [ -e /usr/lib/nvidia-cuda-toolkit ]; then
+  export CUDA_ROOT=/usr/lib/nvidia-cuda-toolkit
+fi
+
 # Activate torch, if available there
 if [ -f /home/diogo/git/torch/install/bin/torch-activate ]; then
   . /home/diogo/git/torch/install/bin/torch-activate

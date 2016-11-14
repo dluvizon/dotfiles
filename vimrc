@@ -8,6 +8,8 @@ set guioptions-=L
 set guioptions-=b
 " Set the font for gvim
 set guifont=Ubuntu\ Mono\ 13
+" Set mouse to command-line mode "
+set mouse=c
 
 " Transparent editing of gpg encrypted files.
 " By Wouter Hanegraaff
