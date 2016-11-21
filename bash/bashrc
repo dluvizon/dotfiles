@@ -60,8 +60,10 @@ then
 	alias vi=vim
 fi
 
-# Set keyboard rate
-xset r rate 200 32
+# Set keyboard rate, if not in SSH
+if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ]; then
+  xset r rate 200 32
+fi
 
 # Configure cuda-toolkit if available
 if [ -e /opt/cuda ]; then
