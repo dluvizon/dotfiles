@@ -96,6 +96,12 @@ then
 	alias vi=vim
 fi
 
+# python3 as default
+if [ -x `which python3` ]
+then
+	alias python=python3
+fi
+
 #  Customize BASH PS1 prompt to show current GIT repository and branch.
 #  by Mike Stewart - http://MediaDoneRight.com
 
