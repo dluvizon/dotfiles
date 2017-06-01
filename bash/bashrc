@@ -52,14 +52,6 @@ if [ -f ~/.git-completion.bash ] && ! shopt -oq posix; then
     . ~/.git-completion.bash
 fi
 
-# Define vim (alias vi) as default editor, if available.
-if [ -x `which vim` ]
-then
-	export EDITOR='vim'
-	set -o vi
-	alias vi=vim
-fi
-
 # Set keyboard rate, if not in SSH
 if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ]; then
   xset r rate 200 32
