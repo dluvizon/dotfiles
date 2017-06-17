@@ -88,6 +88,20 @@ then
 	source ~/.git-prompt.sh
 fi
 
+# Define vim (alias vi) as default editor, if available.
+if [ -x `which vim` ]
+then
+	export EDITOR='vim'
+	set -o vi
+	alias vi=vim
+fi
+
+# python3 as default
+if [ -x `which python3` ]
+then
+	alias python=python3
+fi
+
 #  Customize BASH PS1 prompt to show current GIT repository and branch.
 #  by Mike Stewart - http://MediaDoneRight.com
 
