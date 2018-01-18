@@ -64,6 +64,11 @@ if [ -e /opt/cuda ]; then
   export CUDA_ROOT=/opt/cuda
 elif [ -e /usr/lib/nvidia-cuda-toolkit ]; then
   export CUDA_ROOT=/usr/lib/nvidia-cuda-toolkit
+elif [ -e /usr/local/cuda-8.0 ]; then
+  export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
+  export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
+                             ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+  export CUDA_ROOT=/usr/local/cuda-8.0
 fi
 
 # Activate torch, if available there

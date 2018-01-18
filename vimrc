@@ -88,6 +88,9 @@ let mapleader = "ç"
 " toggle spell check
 nnoremap <leader>s :set spell!<CR>
 
+" put data time
+nnoremap <leader>t :put =strftime('%c')<CR>
+
 " to upercase the word under the cursor
 nnoremap <leader>u bgUee
 
