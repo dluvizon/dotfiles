@@ -61,17 +61,16 @@ if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ]; then
 fi
 
 # Configure cuda-toolkit if available
-if [ -e /opt/cuda ]; then
-  export PATH=/opt/cuda/bin:$PATH
-  export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
-  export CUDA_ROOT=/opt/cuda
-elif [ -e /usr/lib/nvidia-cuda-toolkit ]; then
-  export CUDA_ROOT=/usr/lib/nvidia-cuda-toolkit
-elif [ -e /usr/local/cuda-8.0 ]; then
-  export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
-  export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
-                             ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-  export CUDA_ROOT=/usr/local/cuda-8.0
+if [ -e /usr/local/cuda-9.0 ]; then
+  export PATH=$PATH:/usr/local/cuda-9.0/bin
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/extras/CUPTI/lib64
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64
+  export CUDA_ROOT=/usr/local/cuda-9.0
+fi
+
+# Use binary files from deephar, if available
+if [ -e $HOME/deephar/bin ]; then
+  export PATH=$PATH:$HOME/deephar/bin
 fi
 
 # Activate torch, if available there
