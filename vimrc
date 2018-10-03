@@ -85,8 +85,14 @@ set hidden
 " let mapleader be "ç" because it's in a good position in ABNT2 keyboards
 let mapleader = "ç"
 
-" toggle spell check
-nnoremap <leader>s :set spell!<CR>
+" toggle spell check (english)
+nnoremap <leader>s :set spell! spelllang=en_US<CR>
+
+" toggle spell check (french)
+nnoremap <leader>f :set spell! spelllang=fr_FR<CR>
+
+" toggle spell check (brazilian)
+nnoremap <leader>b :set spell! spelllang=pt_BR<CR>
 
 " put data time
 nnoremap <leader>t :put =strftime('%c')<CR>
