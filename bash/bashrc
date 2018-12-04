@@ -73,6 +73,11 @@ if [ -e $HOME/deephar/bin ]; then
   export PATH=$PATH:$HOME/deephar/bin
 fi
 
+# Add local python binaries
+if [ -e $HOME/.local/bin ]; then
+  export PATH=$PATH:$HOME/.local/bin
+fi
+
 # Activate torch, if available there
 if [ -f /home/diogo/git/torch/install/bin/torch-activate ]; then
   . /home/diogo/git/torch/install/bin/torch-activate
