@@ -48,11 +48,8 @@ export HISTCONTROL=ignoredups
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-if [ -f ~/.git-completion.bash ] && ! shopt -oq posix; then
-    . ~/.git-completion.bash
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+    source /usr/share/git/completion/git-completion.bash
 fi
 
 # Set keyboard rate, if not in SSH
