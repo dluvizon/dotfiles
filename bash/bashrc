@@ -51,6 +51,14 @@ export HISTCONTROL=ignoredups
 if [ -f /usr/share/git/completion/git-completion.bash ]; then
     source /usr/share/git/completion/git-completion.bash
 fi
+# Check also this, since in new versions of git the bash_comletion can be here
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+  . /usr/share/bash-completion/bash_completion
+fi
+if [ -f /usr/share/bash-completion/completions/git ]; then
+  . /usr/share/bash-completion/completions/git
+fi
+
 
 # Set keyboard rate, if not in SSH
 if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ]; then
